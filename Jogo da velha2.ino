@@ -91,6 +91,10 @@ void desenhaJogo() {
 
 void desenhaX(int x, int y) {
 
+  int aux = x;
+  x = y;
+  y = aux;
+
   int tam = 30;
 
   myServo1.write(x);
@@ -126,8 +130,8 @@ void desenhaX(int x, int y) {
 }
 
 void desenhaO(int x, int y) {
-  int xAtual = y;
-  int yAtual = x;
+  int xAtual = x;
+  int yAtual = y;
   int tam = 12;
   int i = 0;
   myServo1.write(xAtual);
@@ -148,6 +152,7 @@ void desenhaO(int x, int y) {
   }
   yAtual += i;
   xAtual += i;
+  delay(100);
 
   // |
   myServo1.write(yAtual + tam);
@@ -163,6 +168,7 @@ void desenhaO(int x, int y) {
   }
   xAtual -= i;
   yAtual += i;
+  delay(100);
 
   // -
   myServo2.write(xAtual - tam);
@@ -178,6 +184,8 @@ void desenhaO(int x, int y) {
   }
   xAtual -= i;
   yAtual -= i;
+  delay(100);
+
 
   // |
   myServo1.write(yAtual - tam);
@@ -193,6 +201,7 @@ void desenhaO(int x, int y) {
   }
   xAtual += i;
   yAtual -= i;
+  delay(100);
 }
 
 void ajusta() {
@@ -202,18 +211,22 @@ void ajusta() {
 
 void loop() {
   if (primeiraVez) {
+    // myServo1.write(180);
+    // myServo2.write(60);
     desenhaJogo();
-    desenhaO(15, 140);   // quadrante 7
-    desenhaO(75, 140);   // quadrante 4
-    desenhaO(135, 140);  // quadrante 1
 
-    desenhaO(15, 75);   // quadrante 8
-    desenhaO(75, 75);   // quadrante 5
-    desenhaO(135, 75);  // quadrante 2
 
-    desenhaO(15, 15);   // quadrante 9
-    desenhaO(75, 15);   // quadrante 6
-    desenhaO(135, 15);  // quadrante 3
+
+    // desenhaO(75, 140);   // quadrante 4
+    // desenhaO(130, 140);  // quadrante 1
+
+    // desenhaO(15, 75);   // quadrante 8
+    // desenhaO(75, 75);   // quadrante 5
+    // desenhaO(130, 75);  // quadrante 2
+
+    // desenhaO(15, 15);   // quadrante 9
+    // desenhaO(75, 15);   // quadrante 6
+    // desenhaO(130, 15);  // quadrante 3
     // ajusta();
     primeiraVez = false;
   }
@@ -234,79 +247,80 @@ void loop() {
   //  ---
 
 
-  // if (vezX) {
-  //   if (digitalRead(2)) {
-  //     desenhaX(135, 140);  // quadrante 1
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(4)) {
-  //     desenhaX(135, 75);  // quadrante 2
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(5)) {
-  //     desenhaX(135, 15);  // quadrante 3
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(6)) {
-  //     desenhaX(75, 140);  // quadrante 4
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(7)) {
-  //     desenhaX(75, 75);  // quadrante 5
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(8)) {
-  //     desenhaX(75, 15);  // quadrante 6
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(9)) {
-  //     desenhaX(15, 140);  // quadrante 7
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(11)) {
-  //     desenhaX(15, 75);  // quadrante 8
-  //     vezX = false;
-  //   }
-  //   if (digitalRead(12)) {
-  //     desenhaX(15, 15);  // quadrante 9
-  //     vezX = false;
-  //   }
-  // } else {
-  //   if (digitalRead(2)) {
-  //     desenhaO(135, 140);  // quadrante 1
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(4)) {
-  //     desenhaO(135, 75);  // quadrante 2
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(5)) {
-  //     desenhaO(135, 15);  // quadrante 3
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(6)) {
-  //     desenhaO(75, 140);  // quadrante 4
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(7)) {
-  //     desenhaO(75, 75);  // quadrante 5
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(8)) {
-  //     desenhaO(75, 15);  // quadrante 6
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(9)) {
-  //     desenhaO(15, 140);  // quadrante 7
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(11)) {
-  //     desenhaO(15, 75);  // quadrante 8
-  //     vezX = true;
-  //   }
-  //   if (digitalRead(12)) {
-  //     desenhaO(15, 15);  // quadrante 9
-  //     vezX = true;
-  //   }
-  // }
+  if (vezX) {
+    if (digitalRead(2)) {
+      desenhaX(135, 140);  // quadrante 1
+      vezX = false;
+    }
+    if (digitalRead(4)) {
+      desenhaX(135, 75);  // quadrante 2
+      vezX = false;
+    }
+    if (digitalRead(5)) {
+      desenhaX(135, 15);  // quadrante 3
+      vezX = false;
+    }
+    if (digitalRead(6)) {
+      desenhaX(75, 140);  // quadrante 4
+      vezX = false;
+    }
+    if (digitalRead(7)) {
+      desenhaX(75, 75);  // quadrante 5
+      vezX = false;
+    }
+    if (digitalRead(8)) {
+      desenhaX(75, 15);  // quadrante 6
+      vezX = false;
+    }
+    if (digitalRead(9)) {
+      desenhaX(15, 140);  // quadrante 7
+      vezX = false;
+    }
+    if (digitalRead(11)) {
+      desenhaX(15, 75);  // quadrante 8
+      vezX = false;
+    }
+    if (digitalRead(12)) {
+      desenhaX(15, 15);  // quadrante 9
+      vezX = false;
+    }
+  } else {
+    if (digitalRead(2)) {
+      desenhaO(135, 140);  // quadrante 1
+      vezX = true;
+    }
+    if (digitalRead(4)) {
+      desenhaO(135, 75);  // quadrante 2
+      vezX = true;
+    }
+    if (digitalRead(5)) {
+      desenhaO(135, 15);  // quadrante 3
+      vezX = true;
+    }
+    if (digitalRead(6)) {
+      desenhaO(75, 140);  // quadrante 4
+      vezX = true;
+    }
+    if (digitalRead(7)) {
+      desenhaO(75, 75);  // quadrante 5
+      vezX = true;
+    }
+    if (digitalRead(8)) {
+      desenhaO(75, 15);  // quadrante 6
+      vezX = true;
+    }
+    if (digitalRead(9)) {
+      desenhaO(15, 140);  // quadrante 7
+      vezX = true;
+    }
+    if (digitalRead(11)) {
+      desenhaO(15, 75);  // quadrante 8
+      vezX = true;
+    }
+    if (digitalRead(12)) {
+      desenhaO(15, 15);  // quadrante 9
+      vezX = true;
+      // }
+    }
+  }
 }
